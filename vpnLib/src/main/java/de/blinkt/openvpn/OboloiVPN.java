@@ -34,8 +34,6 @@ public class OboloiVPN extends Activity {
     private static String user;
     private static String pass;
     private static String country;
-    private static String profileId;
-    private static int timeOutInSeconds;
 
     public OboloiVPN(Activity activity) {
         OboloiVPN.activity = activity;
@@ -56,15 +54,13 @@ public class OboloiVPN extends Activity {
         LocalBroadcastManager.getInstance(activity).registerReceiver(broadcastReceiver, new IntentFilter("connectionState"));
     }
 
-    public void launchVPN(String ovpnFileContent,String expireAt, String user,  String pass, String country,String profileId, int timeOutInSeconds){
+    public void launchVPN(String ovpnFileContent,String expireAt, String user,  String pass, String country){
         OboloiVPN.ovpnFileContent = ovpnFileContent;
         OboloiVPN.expireAt = expireAt;
         OboloiVPN.profileIntent = VpnService.prepare(activity);
         OboloiVPN.user = user;
         OboloiVPN.pass = pass;
         OboloiVPN.country = country;
-        OboloiVPN.timeOutInSeconds = timeOutInSeconds;
-        OboloiVPN.profileId = profileId;
         if(profileIntent != null) {
             activity.startActivityForResult(OboloiVPN.profileIntent, 1);
             return;
@@ -118,7 +114,7 @@ public class OboloiVPN extends Activity {
     private void startVpn() {
         try {
 
-            OpenVpnApi.startVpn(activity, ovpnFileContent, country, expireAt,user, pass, profileId, timeOutInSeconds);
+            OpenVpnApi.startVpn(activity, ovpnFileContent, country, expireAt,user, pass);
 
             //connecting status
             vpnStart = true;
