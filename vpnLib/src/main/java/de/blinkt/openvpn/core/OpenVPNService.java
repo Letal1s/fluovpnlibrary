@@ -1432,7 +1432,6 @@ public class OpenVPNService extends VpnService implements StateListener, Callbac
             Date currentTime = Calendar.getInstance().getTime();
             if (currentTime.after(expireDate)) {
                 try{
-                    sendMessage("EXPIRED");
                     stopVPN(false);
                 }catch (Exception err){
 
