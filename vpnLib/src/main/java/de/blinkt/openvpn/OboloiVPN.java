@@ -29,7 +29,7 @@ public class OboloiVPN extends Activity {
     private static OpenVPNService vpnService;
     private static String ovpnFileContent;
     private static String expireAt;
-    private static boolean vpnStart;
+    public static boolean vpnStart;
     private static Intent profileIntent;
     private static String user;
     private static String pass;
